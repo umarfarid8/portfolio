@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ── Tailwind v4 theme tokens ── */
+@theme {
+  --color-primary:   #915EFF;
+  --color-secondary: #00FFFF;
+  --font-family-poppins: 'Poppins', sans-serif;
+  --font-family-inter:   'Inter', sans-serif;
+  --animate-spin-slow:   spin 8s linear infinite;
+  --animate-bounce-slow: bounce 2s infinite;
+  --animate-pulse-glow:  pulseGlow 2s ease-in-out infinite;
+  --animate-shimmer:     shimmer 2s linear infinite;
+  --animate-float:       float 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════
+   CSS VARIABLES — DARK (default) & LIGHT themes
+═══════════════════════════════════════════════════ */
+:root {
+  --bg-main:         #050816;
+  --bg-alt:          #0a0d20;
+  --bg-card:         rgba(255,255,255,0.04);
+  --bg-card-hover:   rgba(145,94,255,0.08);
+  --bg-input:        rgba(255,255,255,0.05);
+  --bg-input-focus:  rgba(145,94,255,0.08);
+  --bg-navbar:       rgba(5,8,22,0.85);
+  --bg-loader:       #050816;
+
+  --text-primary:    #ffffff;
+  --text-secondary:  rgba(255,255,255,0.60);
+  --text-muted:      rgba(255,255,255,0.35);
+  --text-placeholder:rgba(255,255,255,0.30);
+
+  --border-card:     rgba(145,94,255,0.25);
+  --border-card-hov: rgba(145,94,255,0.55);
+  --border-navbar:   rgba(145,94,255,0.15);
+  --border-input:    rgba(145,94,255,0.25);
+
+  --shadow-card:     0 0 24px rgba(145,94,255,0.18);
+  --scrollbar-track: #050816;
+
+  --accent:  #915EFF;
+  --accent2: #00FFFF;
+}
+
+html.light {
+  --bg-main:         #f4f5ff;
+  --bg-alt:          #ebedf8;
+  --bg-card:         rgba(255,255,255,0.75);
+  --bg-card-hover:   rgba(145,94,255,0.06);
+  --bg-input:        rgba(255,255,255,0.85);
+  --bg-input-focus:  rgba(145,94,255,0.06);
+  --bg-navbar:       rgba(244,245,255,0.88);
+  --bg-loader:       #f4f5ff;
+
+  --text-primary:    #0d0e1a;
+  --text-secondary:  rgba(13,14,26,0.65);
+  --text-muted:      rgba(13,14,26,0.40);
+  --text-placeholder:rgba(13,14,26,0.35);
+
+  --border-card:     rgba(145,94,255,0.22);
+  --border-card-hov: rgba(145,94,255,0.50);
+  --border-navbar:   rgba(145,94,255,0.18);
+  --border-input:    rgba(145,94,255,0.30);
+
+  --shadow-card:     0 4px 24px rgba(145,94,255,0.12);
+  --scrollbar-track: #ebedf8;
+
+  --accent:  #7040e0;
+  --accent2: #0099cc;
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL RESET
+═══════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Poppins', 'Inter', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ═══════════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #915EFF, #00FFFF);
+  border-radius: 10px;
+}
+
+/* ═══════════════════════════════════════════════════
+   SIMPLE CURSOR — instant, no lag
+═══════════════════════════════════════════════════ */
+@media (pointer: fine) {
+  /* Only hide default cursor on devices with a real pointer (not touch) */
+  * { cursor: none !important; }
+}
+
+.cursor-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  /* NO transition — follows instantly */
+  box-shadow: 0 0 8px var(--accent), 0 0 16px color-mix(in srgb, var(--accent) 40%, transparent);
+  will-change: transform;
+}
+
+.cursor-dot.clicking {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+/* ═══════════════════════════════════════════════════
+   GRADIENT TEXT
+═══════════════════════════════════════════════════ */
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════
+   GLASS CARD
+═══════════════════════════════════════════════════ */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.35s ease;
+}
+.glass-card:hover {
+  border-color: var(--border-card-hov);
+  box-shadow: var(--shadow-card);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION LAYOUT
+═══════════════════════════════════════════════════ */
+.section-padding {
+  padding: 80px 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-size: clamp(1.9rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.section-subheading {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+/* ═══════════════════════════════════════════════════
+   LIGHT MODE — comprehensive text & bg overrides
+═══════════════════════════════════════════════════ */
+
+/* 1. All Tailwind text-white/* variants → dark in light mode */
+html.light [class*="text-white"] {
+  color: var(--text-primary) !important;
+}
+/* Restore gradient text (uses -webkit-text-fill-color) */
+html.light .gradient-text {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 2. Inline rgba(255,255,255,x) text → dark */
+html.light [style*="rgba(255,255,255"] {
+  color: var(--text-secondary) !important;
+}
+
+/* 3. Section / div backgrounds that are hardcoded dark */
+html.light section,
+html.light [style*="background: '#050816'"],
+html.light [style*="background:#050816"],
+html.light [style*="background: \"#050816\""] {
+  background-color: var(--bg-main) !important;
+}
+
+/* 4. Glassmorphism card in light mode */
+html.light .glass-card {
+  background: rgba(255,255,255,0.7) !important;
+  border-color: rgba(145,94,255,0.22) !important;
+  box-shadow: 0 4px 20px rgba(145,94,255,0.08);
+}
+
+/* 5. Skill card */
+html.light .skill-card {
+  background: rgba(255,255,255,0.65) !important;
+}
+html.light .skill-card span {
+  color: var(--text-secondary) !important;
+}
+
+/* 6. Input fields */
+html.light .input-field {
+  color: var(--text-primary) !important;
+}
+html.light .input-field::placeholder {
+  color: var(--text-placeholder) !important;
+}
+
+/* 7. Navbar transparent phase */
+html.light header {
+  background: rgba(244,245,255,0.0);
+}
+
+/* 8. Cert card text */
+html.light .cert-card h3,
+html.light .cert-card p {
+  color: var(--text-secondary) !important;
+}
+
+/* 9. Timeline/experience bullets */
+html.light li {
+  color: var(--text-secondary);
+}
+
+/* 10. Section headings always dark in light mode */
+html.light .section-heading {
+  color: var(--text-primary);
+}
+
+/* Responsive padding */
+@media (max-width: 1024px) {
+  .section-padding { padding: 70px 32px; }
+}
+@media (max-width: 768px) {
+  .section-padding { padding: 56px 18px; }
+  .section-heading { font-size: clamp(1.6rem, 6vw, 2.6rem); }
+}
+@media (max-width: 480px) {
+  .section-padding { padding: 44px 14px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, var(--accent), #6a3fd4);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--accent2);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid var(--accent2);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  background: color-mix(in srgb, var(--accent2) 10%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent2) 40%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════
+   SKILL CARD
+═══════════════════════════════════════════════════ */
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.skill-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════
+   INPUT FIELDS
+═══════════════════════════════════════════════════ */
+.input-field {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+.input-field:focus {
+  border-color: var(--accent);
+  background: var(--bg-input-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.input-field::placeholder { color: var(--text-placeholder); }
+
+/* ═══════════════════════════════════════════════════
+   CERT CARD
+═══════════════════════════════════════════════════ */
+.cert-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 28px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, background 0.35s ease;
+}
+.cert-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+.cert-card:hover { transform: translateY(-5px); }
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+.navbar-glass {
+  background: var(--bg-navbar);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border-navbar);
+  transition: background 0.35s ease;
+}
+
+/* ═══════════════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════════════ */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-loader);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO CANVAS
+═══════════════════════════════════════════════════ */
+.hero-canvas-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* In light mode, hide the dark Three.js stars canvas and
+   replace it with a soft gradient so text is fully readable */
+html.light .hero-canvas-wrapper {
+  display: none;
+}
+html.light #hero {
+  background: linear-gradient(
+    135deg,
+    #f0f0ff 0%,
+    #f4f5ff 40%,
+    #eef0fb 70%,
+    #ece8ff 100%
+  ) !important;
+}
+
+/* ═══════════════════════════════════════════════════
+   LIGHT MODE — section BG overrides
+═══════════════════════════════════════════════════ */
+html.light section {
+  background: var(--bg-main) !important;
+}
+
+/* ═══════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════ */
+.Toastify__toast {
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--border-card) !important;
+  border-radius: 12px !important;
+  color: var(--text-primary) !important;
+}
+.Toastify__progress-bar {
+  background: linear-gradient(90deg, #915EFF, #00FFFF) !important;
+}
+
+/* ═══════════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════════ */
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 8px #915EFF, 0 0 20px rgba(145,94,255,0.25); }
+  50%      { box-shadow: 0 0 20px #915EFF, 0 0 40px rgba(145,94,255,0.5); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}

@@ -1,0 +1,35 @@
+# ─── Node / Frontend ──────────────────────
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# ─── .NET / Backend ───────────────────────
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dbmdl
+*.jfm
+TestResults/
+
+# ─── Environment & Secrets ────────────────
+.env
+.env.local
+.env.*.local
+appsettings.Development.json
+
+# ─── OS / Editor ──────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+
+# ─── Logs ─────────────────────────────────
+*.log
+npm-debug.log*
