@@ -1,0 +1,13 @@
+# Netlify build configuration
+# Tells Netlify where the frontend lives, how to build it, and where the output is
+
+[build]
+  base    = "frontend"        # cd into frontend/ before doing anything
+  command = "npm run build"   # runs vite build
+  publish = "dist"            # output folder (relative to base)
+
+# SPA redirect — send ALL routes to index.html so React Router handles them
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
