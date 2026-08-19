@@ -80,8 +80,9 @@ const Cube = () => {
         animate();
 
         const onResize = () => {
-            const w = canvas.clientWidth;
-            const h = canvas.clientHeight;
+            const w = canvas.clientWidth || 360;
+            const h = canvas.clientHeight || 360;
+            if (w === 0 || h === 0) return;
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);

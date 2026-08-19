@@ -114,25 +114,50 @@ const Navbar = () => {
               {isDark ? '☀️' : '🌙'}
             </motion.button>
 
-            {/* CV button — hidden on very small screens */}
+            {/* Resume button */}
+            <a
+              href="/Umar_Farid_Resume.pdf"
+              download="Umar_Farid_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary hidden lg:inline-flex items-center gap-1.5"
+              style={{ padding: '8px 16px', fontSize: '0.82rem', borderRadius: 8 }}
+              id="nav-resume-btn"
+              title="Download Umar Farid's Resume (PDF)"
+            >
+              📄 Resume
+            </a>
+
+            {/* Hire Me button */}
             <a
               href="mailto:umarfarid034@gmail.com"
               className="btn-primary hidden sm:inline-flex"
               style={{ padding: '9px 18px', fontSize: '0.82rem', borderRadius: 8 }}
+              id="nav-hire-me-btn"
             >
               Hire Me
             </a>
 
             {/* Hamburger */}
             <button
-              className="md:hidden flex flex-col gap-[5px] p-1.5"
-              onClick={() => setMenuOpen((p) => !p)}
-              aria-label="Toggle menu"
+              className="md:hidden flex flex-col justify-center items-center gap-[5px] p-2 rounded-lg cursor-pointer transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setMenuOpen((p) => !p);
+              }}
+              style={{
+                background: menuOpen ? 'rgba(145,94,255,0.15)' : 'transparent',
+                border: 'none',
+                minWidth: 40,
+                minHeight: 40,
+              }}
+              aria-label="Toggle navigation menu"
+              id="nav-mobile-toggle-btn"
             >
               {[0, 1, 2].map((i) => (
                 <span
                   key={i}
-                  className="block w-5 h-[2px] rounded transition-all duration-300"
+                  className="block w-5 h-[2px] rounded transition-all duration-300 pointer-events-none"
                   style={{
                     background: 'var(--text-primary)',
                     transform:
@@ -152,14 +177,14 @@ const Navbar = () => {
       {/* ── Mobile Slide-in Drawer ── */}
       <AnimatePresence>
         {menuOpen && (
-          <>
+          <div className="md:hidden">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40"
-              style={{ background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}
+              className="fixed inset-0 z-[60]"
+              style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)' }}
               onClick={() => setMenuOpen(false)}
             />
             {/* Drawer */}
@@ -168,18 +193,19 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.28 }}
-              className="fixed top-0 right-0 h-full z-50 flex flex-col p-7 gap-5"
+              className="fixed top-0 right-0 h-full z-[70] flex flex-col p-7 gap-5 overflow-y-auto"
               style={{
-                width:          'min(280px, 85vw)',
+                width:          'min(300px, 85vw)',
                 background:     'var(--bg-navbar)',
                 backdropFilter: 'blur(30px)',
                 borderLeft:     '1px solid var(--border-card)',
+                boxShadow:      '-10px 0 30px rgba(0,0,0,0.5)',
               }}
             >
               {/* Close */}
               <button
                 onClick={() => setMenuOpen(false)}
-                className="self-end text-xl font-bold transition-colors"
+                className="self-end text-xl font-bold transition-colors cursor-pointer p-1"
                 style={{ color: 'var(--text-muted)', border: 'none', background: 'none' }}
                 aria-label="Close menu"
               >
@@ -197,7 +223,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
                   onClick={() => scrollTo(link.id)}
-                  className="text-left text-base font-medium transition-colors py-1"
+                  className="text-left text-base font-medium transition-colors py-1 cursor-pointer"
                   style={{
                     color:      activeSection === link.id ? 'var(--accent)' : 'var(--text-secondary)',
                     border:     'none',
@@ -208,11 +234,11 @@ const Navbar = () => {
                 </motion.button>
               ))}
 
-              <div className="mt-auto flex flex-col gap-3">
+              <div className="mt-auto flex flex-col gap-3 pt-6">
                 {/* Theme toggle in drawer */}
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 text-sm font-medium py-2 px-4 rounded-lg transition-all"
+                  className="flex items-center gap-2 text-sm font-medium py-2 px-4 rounded-lg transition-all cursor-pointer"
                   style={{
                     background: isDark ? 'rgba(145,94,255,0.1)' : 'rgba(255,200,50,0.12)',
                     border:     isDark ? '1px solid rgba(145,94,255,0.3)' : '1px solid rgba(255,180,0,0.35)',
@@ -223,6 +249,16 @@ const Navbar = () => {
                 </button>
 
                 <a
+                  href="/Umar_Farid_Resume.pdf"
+                  download="Umar_Farid_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-center justify-center text-sm flex items-center gap-2"
+                >
+                  📄 Download Resume
+                </a>
+
+                <a
                   href="mailto:umarfarid034@gmail.com"
                   className="btn-primary text-center justify-center text-sm"
                 >
@@ -230,7 +266,7 @@ const Navbar = () => {
                 </a>
               </div>
             </motion.div>
-          </>
+          </div>
         )}
       </AnimatePresence>
     </header>

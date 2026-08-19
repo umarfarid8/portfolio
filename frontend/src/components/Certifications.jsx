@@ -31,9 +31,9 @@ const Certifications = () => {
               animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
               transition={{ delay: i * 0.12, duration: 0.6 }}
               whileHover={{ y: -6 }}
-              className="cert-card"
+              className="cert-card h-full justify-between"
             >
-              {/* Gold shimmer overlay */}
+              {/* Colored shimmer overlay */}
               <div
                 className="absolute inset-0 rounded-2xl pointer-events-none"
                 style={{
@@ -41,33 +41,47 @@ const Certifications = () => {
                 }}
               />
 
-              {/* Logo circle */}
-              <div className="relative z-10 mb-5 flex justify-center">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center p-3"
-                  style={{
-                    background: `radial-gradient(circle, ${cert.color}25, transparent)`,
-                    border:     `2px solid ${cert.color}50`,
-                  }}
-                >
-                  <img
-                    src={cert.logo}
-                    alt={cert.issuer}
-                    className="w-10 h-10 object-contain"
-                    onError={(e) => { e.target.style.display = 'none'; }}
-                  />
+              {/* Top part: Logo circle + Info */}
+              <div className="w-full flex flex-col items-center">
+                {/* Logo circle */}
+                <div className="relative z-10 mb-4 flex justify-center">
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center p-3"
+                    style={{
+                      background: `radial-gradient(circle, ${cert.color}25, transparent)`,
+                      border:     `2px solid ${cert.color}50`,
+                    }}
+                  >
+                    <img
+                      src={cert.logo}
+                      alt={`${cert.name} certification badge - ${cert.issuer}`}
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      className="w-8 h-8 object-contain"
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Text */}
-              <div className="relative z-10 space-y-1 flex-1">
-                <h3 className="text-sm font-bold text-white leading-snug px-1">
-                  {cert.name}
-                </h3>
-                <p className="text-xs text-white/45">{cert.issuer}</p>
-                <p className="text-xs font-semibold" style={{ color: cert.color }}>
-                  📅 {cert.date}
-                </p>
+                {/* Text */}
+                <div className="relative z-10 space-y-1.5 w-full text-center">
+                  <h3
+                    className="text-sm font-bold leading-snug px-1"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
+                    {cert.name}
+                  </h3>
+                  <p
+                    className="text-xs"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
+                    {cert.issuer}
+                  </p>
+                  <p className="text-xs font-semibold pt-1" style={{ color: cert.color }}>
+                    📅 {cert.date}
+                  </p>
+                </div>
               </div>
 
               {/* View button */}
@@ -75,7 +89,7 @@ const Certifications = () => {
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative z-10 mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all"
+                className="relative z-10 mt-5 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all"
                 style={{
                   background: `${cert.color}15`,
                   border:     `1px solid ${cert.color}40`,

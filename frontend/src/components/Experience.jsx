@@ -96,7 +96,7 @@ const Experience = () => {
             style={{
               top:        0,
               height:     '100%',
-              background: 'linear-gradient(180deg, #915EFF40, #00FFFF40)',
+              background: 'linear-gradient(180deg, #915EFF40, #00FFFF40, #FF6B6B40)',
             }}
           />
           {experiences.map((exp, i) => (

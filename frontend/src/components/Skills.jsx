@@ -84,7 +84,10 @@ const Skills = () => {
                                         >
                                             <img
                                                 src={skill.icon}
-                                                alt={skill.name}
+                                                alt={`${skill.name} technology icon`}
+                                                width="48"
+                                                height="48"
+                                                loading="lazy"
                                                 className="w-12 h-12 object-contain"
                                                 onError={(e) => {
                                                     e.target.style.display = 'none';

@@ -98,8 +98,9 @@ const Earth = () => {
         animate();
 
         const onResize = () => {
-            const w = canvas.clientWidth;
-            const h = canvas.clientHeight;
+            const w = canvas.clientWidth || 380;
+            const h = canvas.clientHeight || 380;
+            if (w === 0 || h === 0) return;
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);

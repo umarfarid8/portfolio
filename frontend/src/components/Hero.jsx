@@ -115,29 +115,42 @@ const Hero = () => {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center mt-2">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-3 sm:gap-4 justify-center items-center mt-2 w-full">
             <a
               href="mailto:umarfarid034@gmail.com"
-              className="btn-primary"
+              className="btn-primary flex items-center justify-center gap-2 text-sm sm:text-base px-6 py-3"
+              id="hero-hire-me-btn"
             >
               📬 Hire Me
             </a>
+            <a
+              href="/Umar_Farid_Resume.pdf"
+              download="Umar_Farid_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary flex items-center justify-center gap-2 text-sm sm:text-base px-6 py-3"
+              id="hero-download-resume-btn"
+              title="Download Umar Farid's Resume (PDF)"
+            >
+              📄 Download Resume
+            </a>
             <button
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-secondary"
+              className="btn-secondary flex items-center justify-center gap-2 text-sm sm:text-base px-6 py-3"
+              id="hero-view-projects-btn"
             >
               🚀 View Projects
             </button>
           </motion.div>
 
           {/* Stat Pills */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center mt-4">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-3 justify-center mt-4 w-full">
             {heroStats.map((stat) => (
-              <div key={stat.label} className="glass-card px-6 py-3 flex items-center gap-3">
-                <span className="text-2xl font-black gradient-text">
+              <div key={stat.label} className="glass-card px-4 sm:px-6 py-2.5 sm:py-3 flex items-center gap-2.5 sm:gap-3">
+                <span className="text-xl sm:text-2xl font-black gradient-text">
                   {stat.value}{stat.suffix}
                 </span>
-                <span className="text-sm" style={{ color: 'var(--text-muted)' }}>{stat.label}</span>
+                <span className="text-xs sm:text-sm" style={{ color: 'var(--text-muted)' }}>{stat.label}</span>
               </div>
             ))}
           </motion.div>

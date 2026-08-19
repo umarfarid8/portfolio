@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umar Farid — Software Developer Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 18mm 16mm 18mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: #1a202c;
+      background: #ffffff;
+      line-height: 1.45;
+      font-size: 10.5pt;
+    }
+    .header {
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .name {
+      font-size: 20pt;
+      font-weight: 800;
+      color: #1e1b4b;
+      letter-spacing: -0.5px;
+    }
+    .title {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #4f46e5;
+      margin-top: 2px;
+    }
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 6px;
+      font-size: 9.5pt;
+      color: #4b5563;
+    }
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .contact-item a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    .section {
+      margin-bottom: 11px;
+    }
+    .section-title {
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e1b4b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+    p, li {
+      color: #374151;
+      font-size: 9.5pt;
+    }
+    .summary-text {
+      text-align: justify;
+      line-height: 1.45;
+    }
+    .skills-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .skills-list li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+    .skills-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #6366f1;
+      font-weight: bold;
+    }
+    .exp-item {
+      margin-bottom: 8px;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+    .exp-role {
+      font-weight: 700;
+      color: #111827;
+      font-size: 10pt;
+    }
+    .exp-company {
+      font-weight: 600;
+      color: #4f46e5;
+      font-size: 9.5pt;
+    }
+    .exp-date {
+      font-size: 9pt;
+      color: #6b7280;
+      font-weight: 500;
+    }
+    .exp-bullets {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 3px;
+    }
+    .exp-bullets li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 3px;
+      line-height: 1.35;
+    }
+    .exp-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #6366f1;
+      font-weight: bold;
+    }
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .edu-degree {
+      font-weight: 700;
+      color: #111827;
+      font-size: 10pt;
+    }
+    .edu-school {
+      font-weight: 600;
+      color: #4f46e5;
+      font-size: 9.5pt;
+    }
+    .edu-details {
+      font-size: 9pt;
+      color: #4b5563;
+      margin-top: 1px;
+    }
+    .cert-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .cert-list li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 3px;
+      font-size: 9.5pt;
+      line-height: 1.35;
+    }
+    .cert-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #6366f1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="name">Umar Farid</div>
+    <div class="title">Software Developer</div>
+    <div class="contact-bar">
+      <span class="contact-item">📞 +923027896793</span>
+      <span class="contact-item">📧 <a href="mailto:umarfarid034@gmail.com">umarfarid034@gmail.com</a></span>
+      <span class="contact-item">🔗 <a href="https://linkedin.com/in/umar-farid-dev" target="_blank">linkedin.com/in/umar-farid-dev</a></span>
+      <span class="contact-item">🐙 <a href="https://github.com/umarfaridse" target="_blank">github.com/umarfaridse</a></span>
+      <span class="contact-item">📍 Sahiwal, Pakistan</span>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <p class="summary-text">
+      Computer Science graduate from COMSATS University Islamabad with hands-on experience building full-stack web applications using ASP.NET Core, C#, Entity Framework Core, and React.js. Completed the .NET Full Stack Foundation certification and actively developing two production-level projects. Seeking a .NET internship or junior developer role to contribute to real-world projects, apply strong OOP and REST API skills, and grow within an experienced engineering team.
+    </p>
+  </div>
+
+  <!-- Highlights / Technical Skills -->
+  <div class="section">
+    <div class="section-title">Highlights &amp; Technical Skills</div>
+    <ul class="skills-list">
+      <li><strong>Back-End &amp; Core:</strong> ASP.NET Core, C#, Entity Framework Core, REST API Development, OOP Principles, LINQ</li>
+      <li><strong>Front-End:</strong> React.js, JavaScript, HTML5, CSS3, Tailwind CSS</li>
+      <li><strong>Databases:</strong> SQL Server, Firebase (basic)</li>
+      <li><strong>Tools &amp; Practices:</strong> Git, GitHub, Visual Studio, VS Code, Swagger, MVC Architecture</li>
+    </ul>
+  </div>
+
+  <!-- Experience -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <!-- Job 1: Noorwave -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">Software Developer Intern</span> — <span class="exp-company">Noorwave, Sahiwal</span> (Onsite)
+        </div>
+        <span class="exp-date">Jan 2026 – June 2026</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Served as a Software Developer Intern.</li>
+        <li>Worked on a demo project called <strong>Expense Manager</strong> developed in React to boost learning and proficiency across the required development platforms.</li>
+        <li>Worked on a demo project called <strong>School Management System</strong> developed in WPF to get hands-on experience in desktop-based software development.</li>
+      </ul>
+    </div>
+
+    <!-- Job 2: FYP -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">Final Year Project</span> — <span class="exp-company">Home Service Provider (Service Marketplace)</span>
+        </div>
+        <span class="exp-date">COMSATS University</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Developed a full-stack service marketplace connecting customers with verified local service providers through intelligent AI-powered matching.</li>
+        <li>Built a decoupled architecture using <strong>React.js, ASP.NET Core Web API, Entity Framework Core, and SQL Server</strong>.</li>
+        <li>Integrated <strong>OpenAI API</strong> to analyze customer requirements, provider profiles, ratings, and reviews for intelligent service provider recommendations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-item">
+      <div>
+        <span class="edu-degree">Bachelor of Science — Computer Science</span> (CGPA: <strong>3.31 / 4.00</strong>)
+        <div class="edu-school">COMSATS University Islamabad, Sahiwal Campus</div>
+      </div>
+      <span class="exp-date">2022 – 2026</span>
+    </div>
+  </div>
+
+  <!-- Certifications -->
+  <div class="section" style="margin-bottom: 0;">
+    <div class="section-title">Certifications</div>
+    <ul class="cert-list">
+      <li><strong>.NET Full Stack Foundation</strong> — Board Infinity (Aug 2025)</li>
+      <li><strong>Frontend Development using React</strong> — Board Infinity (2025)</li>
+      <li><strong>Getting Started with Data Analytics on AWS</strong> — Amazon Web Services (Jul 2025)</li>
+      <li><strong>Backend Development: Node.js, Express, MongoDB &amp; REST APIs</strong> — Board Infinity (2025)</li>
+    </ul>
+  </div>
+
+</body>
+</html>
